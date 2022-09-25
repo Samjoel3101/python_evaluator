@@ -9,6 +9,7 @@ static/js/build
 app.conf
 secrets.conf
 tests
+media
 
 # Frontend ignores
 .yarn/*

@@ -6,8 +6,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 
 DEPLOY_TYPE = app_config.get("app", "deploy_type")
 
-# Booleans for asserting the environment type the app is running. So that we can do sthg like if settings.DEVELOPMENT: do sthg else: sthg 
-# in our code easily 
+# Booleans for asserting the environment type the app is running. So that we can do sthg like if settings.DEVELOPMENT: do sthg else: sthg
+# in our code easily
 DEVELOPMENT = DEPLOY_TYPE == "development"
 STAGE = DEPLOY_TYPE == "stage"
 PRODUCTION = DEPLOY_TYPE == "production"
@@ -42,7 +42,7 @@ DJANGO_APPS = [
     "django.contrib.sites",
 ]
 
-PROJECT_APPS = ["accounts.apps.AccountsConfig", "python_evaluator"]
+PROJECT_APPS = ["accounts.apps.AccountsConfig", "python_evaluator.apps.PythonEvaluatorConfig"]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
@@ -160,6 +160,9 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
+# Media
+MEDIA_ROOT = "media"
+MEDIA_URL = "/media/"
 
 # Import all app settings
 from .apps import *

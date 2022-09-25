@@ -10,9 +10,16 @@ def upload_environment(instance, filename):
 
 
 class PythonVersionType(models.TextChoices):
-    PYTHON36 = ("python3.6", "3.6")
-    PYTHON37 = ("python3.7", "3.7")
-    PYTHON38 = ("python3.8", "3.8")
+    PYTHON36 = "3.6"
+    PYTHON37 = "3.7"
+    PYTHON38 = "3.8"
+
+
+class PythonEnvironmentStatusType(models.TextChoices):
+    QUEUED = "queued"
+    BUILDING = "building"
+    COMPLETED = "completed"
+    ERROR = "error"
 
 
 class PythonEnvironment(models.Model):
@@ -21,6 +28,8 @@ class PythonEnvironment(models.Model):
 
     name = models.CharField(max_length=255)
     requirements_file = models.FileField(upload_to=upload_environment, validators=[FileExtensionValidator(["txt"])])
+    status = EnumField(choices=PythonEnvironmentStatusType.choices, default=PythonEnvironmentStatusType.QUEUED)
+    python_version = EnumField(choices=PythonVersionType.choices)
     slug = models.UUIDField(default=uuid.uuid4)
     docker_image = models.CharField(max_length=512, null=True, blank=True)
     build_logs = models.TextField(null=True, blank=True)

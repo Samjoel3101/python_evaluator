@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from python_evaluator.models import PythonEnvironment, PythonQuestion, PythonQuestionSubmission
+
+admin.site.register(PythonEnvironment)
+admin.site.register(PythonQuestion)
+admin.site.register(PythonQuestionSubmission)

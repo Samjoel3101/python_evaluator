@@ -1,0 +1,20 @@
+static-local/*
+*node_modules
+*.local
+*.env
+*bundle*.js
+__pycache__
+staticfiles/ 
+static/js/build
+app.conf
+secrets.conf
+tests
+
+# Frontend ignores
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

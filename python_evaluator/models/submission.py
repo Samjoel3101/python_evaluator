@@ -9,5 +9,5 @@ class PythonQuestionSubmission(models.Model):
 
     source_code = models.TextField()
     python_question = models.ForeignKey(PythonQuestion, on_delete=models.CASCADE)
-    output = models.TextField()
-    time = models.IntegerField()
+    output = models.TextField(null=True, blank=True)
+    time = models.IntegerField(null=True, blank=True)

@@ -1,13 +1,13 @@
 from django.db import models
 
-from .question import PythonQuestion
+from .environment import PythonEnvironment
 
 
 class PythonQuestionSubmission(models.Model):
     class Meta:
-        db_table = "python_question_submissions"
+        db_table = "python_submissions"
 
     source_code = models.TextField()
-    python_question = models.ForeignKey(PythonQuestion, on_delete=models.CASCADE)
+    environment = models.ForeignKey(PythonEnvironment, on_delete=models.PROTECT)
     output = models.TextField(null=True, blank=True)
     time = models.IntegerField(null=True, blank=True)

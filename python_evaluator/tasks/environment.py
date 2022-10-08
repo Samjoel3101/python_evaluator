@@ -7,7 +7,7 @@ from python_evaluator.utils.build_container import build_docker_image
 
 
 def get_docker_image_name(environment):
-    return f"{environment.id}_{environment.name}"
+    return f"{environment.id}_{environment.name.lower()}"
 
 
 def update_python_environment_status(environment, status, commit=True):

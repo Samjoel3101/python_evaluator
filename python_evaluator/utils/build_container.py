@@ -33,12 +33,12 @@ def build_docker_image(requirements_txt: bytes, python_version: str, image_name:
         for chunk in log_stream:
             if "stream" in chunk:
                 chunk = chunk["stream"]
-                # logging.info(chunk)
+                logging.info(chunk)
                 logs["info"].append(chunk)
             elif ("error" or "errorDetail") in chunk.keys():
-                print(chunk)
-                # print(chunk)
-                logs["error"].append(json.dumps(chunk))
+                chunk_data = json.dumps(chunk)
+                logging.error(chunk_data)
+                logs["error"].append(chunk_data)
 
     logs["info"] = "".join(logs["info"])
     logs["error"] = "".join(logs["error"])

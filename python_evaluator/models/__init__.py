@@ -1,2 +1,2 @@
 from .environment import PythonEnvironment
-from .submission import PythonQuestionSubmission
+from .submission import PythonSubmission

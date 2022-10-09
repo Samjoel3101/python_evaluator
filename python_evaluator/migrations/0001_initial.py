@@ -12,38 +12,64 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='PythonEnvironment',
+            name="PythonEnvironment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('requirements_file', models.FileField(upload_to=python_evaluator.models.environment.upload_environment, validators=[django.core.validators.FileExtensionValidator(['txt'])])),
-                ('status', django_mysql.models.EnumField(choices=[('queued', 'Queued'), ('building', 'Building'), ('completed', 'Completed'), ('error', 'Error')], default='queued')),
-                ('python_version', django_mysql.models.EnumField(choices=[('3.6', 'Python36'), ('3.7', 'Python37'), ('3.8', 'Python38')])),
-                ('slug', models.UUIDField(default=uuid.uuid4)),
-                ('docker_image', models.CharField(blank=True, max_length=512, null=True)),
-                ('build_logs', models.TextField(blank=True, null=True)),
-                ('meta_data', models.JSONField(blank=True, null=True)),
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("name", models.CharField(max_length=255)),
+                (
+                    "requirements_file",
+                    models.FileField(
+                        upload_to=python_evaluator.models.environment.upload_environment,
+                        validators=[django.core.validators.FileExtensionValidator(["txt"])],
+                    ),
+                ),
+                (
+                    "status",
+                    django_mysql.models.EnumField(
+                        choices=[
+                            ("queued", "Queued"),
+                            ("building", "Building"),
+                            ("completed", "Completed"),
+                            ("error", "Error"),
+                        ],
+                        default="queued",
+                    ),
+                ),
+                (
+                    "python_version",
+                    django_mysql.models.EnumField(
+                        choices=[("3.6", "Python36"), ("3.7", "Python37"), ("3.8", "Python38")]
+                    ),
+                ),
+                ("slug", models.UUIDField(default=uuid.uuid4)),
+                ("docker_image", models.CharField(blank=True, max_length=512, null=True)),
+                ("build_logs", models.TextField(blank=True, null=True)),
+                ("meta_data", models.JSONField(blank=True, null=True)),
             ],
             options={
-                'db_table': 'python_environments',
+                "db_table": "python_environments",
             },
         ),
         migrations.CreateModel(
-            name='PythonQuestionSubmission',
+            name="PythonSubmission",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('source_code', models.TextField()),
-                ('output', models.TextField(blank=True, null=True)),
-                ('time', models.IntegerField(blank=True, null=True)),
-                ('environment', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='python_evaluator.pythonenvironment')),
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("source_code", models.TextField()),
+                ("output", models.TextField(blank=True, null=True)),
+                ("time", models.IntegerField(blank=True, null=True)),
+                (
+                    "environment",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT, to="python_evaluator.pythonenvironment"
+                    ),
+                ),
             ],
             options={
-                'db_table': 'python_submissions',
+                "db_table": "python_submissions",
             },
         ),
     ]

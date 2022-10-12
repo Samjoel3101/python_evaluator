@@ -9,5 +9,5 @@ urlpatterns = [
         "hello_world/", TemplateView.as_view(template_name="hello_world.html"), name="account_email_verification_sent"
     ),
     path("", include("accounts.urls", namespace="accounts")),
-    path("", include("python_evaluator.urls", namepsace="python_evaluator"))
+    path("", include("python_evaluator.urls", namespace="python_evaluator"))
 ]

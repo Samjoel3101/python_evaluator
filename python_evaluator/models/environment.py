@@ -33,4 +33,5 @@ class PythonEnvironment(models.Model):
     slug = models.UUIDField(default=uuid.uuid4)
     docker_image = models.CharField(max_length=512, null=True, blank=True)
     build_logs = models.TextField(null=True, blank=True)
+    build_commands = models.TextField(null=True, blank=True)
     meta_data = models.JSONField(null=True, blank=True)
